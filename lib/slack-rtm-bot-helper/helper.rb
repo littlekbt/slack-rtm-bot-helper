@@ -52,14 +52,14 @@ module Slack
               data = ::JSON.parse(msg.data)
               close if data.empty?
 
-              helper.channel ||= data['channel']
               msg = helper.message_block.call(data) if !data['text'].empty?
 
               if !msg.nil? && !msg.empty?
+                target_ch = helper.channel || data['channel']
                 msg_json = {
                    id:      helper.id,
                    type:    'message',
-                   channel: helper.channel,
+                   channel: target_ch,
                    text:    msg
                 }.to_json
 
