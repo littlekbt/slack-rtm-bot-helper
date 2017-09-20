@@ -50,7 +50,7 @@ module Slack
         end
 
         def to_me?(text)
-          text.match?(/^<@#{@me}(?:#{@name})?/)
+          !text.match(/^<@#{@me}(?:#{@name})?/).nil?
         end
 
         private
