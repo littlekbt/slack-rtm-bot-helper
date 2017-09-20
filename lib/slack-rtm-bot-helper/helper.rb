@@ -13,6 +13,7 @@ module Slack
           @token         = token
           @channel       = channel
           @message_block = message_block
+          @name          = name
           @me            = me_id(token, name) unless name.nil?
 
           @id  = 1
@@ -49,7 +50,7 @@ module Slack
         end
 
         def to_me?(text)
-          text.match?(/^<@#{@me}/)
+          text.match?(/^<@#{@me}(?:#{@name})?/)
         end
 
         private
