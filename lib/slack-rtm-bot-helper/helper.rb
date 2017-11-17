@@ -27,7 +27,7 @@ module Slack
           s.connect
 
           loop do
-            sleep 2
+            sleep 1
             unless s.wss.open?
               s.connect
             end
